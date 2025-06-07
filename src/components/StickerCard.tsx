@@ -10,25 +10,53 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import CouponStamp from "@/components/CouponStamp";
+import { useEffect, useState } from "react";
 
 type Props = {
   guest: Guest;
 };
 
+function getBgClass(appearances: number): string {
+  if (appearances >= 50) return "bg-pink-500"; // 유재석
+  if (appearances >= 10) return "bg-pink-400";
+  if (appearances >= 5) return "bg-pink-300";
+  if (appearances >= 3) return "bg-pink-200";
+  return "bg-pink-100";
+}
+
 export default function StickerCard({ guest }: Props) {
   const hasCoupon = guest.appearances >= 3;
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const liked = localStorage.getItem(`like-${guest.name}`) === "true";
+    setIsLiked(liked);
+  }, [guest.name]);
+
+  const toggleLike = () => {
+    const newLike = !isLiked;
+    setIsLiked(newLike);
+    localStorage.setItem(`like-${guest.name}`, String(newLike));
+  };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card className="w-48 text-center shadow-md hover:scale-105 transition-all hover:rotate-1 hover:shadow-lg bg-white cursor-pointer">
+        <Card
+          className={`
+    w-40 h-55 ${getBgClass(guest.appearances)} rounded-full shadow-md
+    transform transition duration-300 ease-in-out
+    hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
+    relative
+  `}
+        >
           <CardContent className="p-4 flex flex-col items-center">
             <Image
               src={guest.image}
               alt={guest.name}
               width={100}
               height={100}
-              className="rounded-full border-2 border-pink-300 mb-2 object-cover"
+              className="rounded-full mb-2 object-cover"
               style={{ width: "100px", height: "100px" }}
             />
             <h2 className="font-bold text-lg">{guest.name}</h2>
@@ -38,6 +66,15 @@ export default function StickerCard({ guest }: Props) {
                 💸 출연료 지급!
               </Badge>
             )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // 모달 안 열리게 방지
+                toggleLike();
+              }}
+              className="absolute top-2 right-2 text-xl"
+            >
+              {isLiked ? "❤️" : "🤍"}
+            </button>
           </CardContent>
         </Card>
       </DialogTrigger>
