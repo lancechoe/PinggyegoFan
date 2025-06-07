@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";;
 
 export default function Home() {
   return (
@@ -98,6 +99,10 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+      <main className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-3xl font-bold mb-4">핑계고 팬사이트 🎀</h1>
+      <Button>테스트 버튼</Button>
+    </main>
     </div>
   );
 }
