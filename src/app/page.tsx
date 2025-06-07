@@ -26,11 +26,16 @@ export default function Home() {
     );
 
   return (
-    <main className="min-h-screen p-8 bg-white">
+    <main
+      className="
+  min-h-screen p-8
+  bg-gradient-to-b from-white to-pink-100
+"
+    >
       <h1 className="text-3xl font-bold mb-6 text-center">
         <Link
           href="/about"
-          className="inline-flex items-center gap-2 hover:underline hover:text-pink-500 transition"
+          className="inline-flex items-center gap-2 transition"
         >
           <Image
             src="/핑계고로고.png"
@@ -39,12 +44,29 @@ export default function Home() {
             height={52}
             className="inline-block"
           />
-          핑ㄱㅖ고 쿠폰북
+          <span
+            className="
+    bg-gradient-to-r from-pink-400 via-pink-500 to-pink-400
+    bg-clip-text text-transparent
+    animate-pulse text-3xl font-extrabold drop-shadow-[1px_1px_0px_rgba(0,0,0,0.7)]
+  "
+            style={{
+              WebkitTextStroke: "1px black",
+            }}
+          >
+            핑ㄱㅖ고 쿠폰북
+          </span>
         </Link>
       </h1>
 
       {/* 검색 & 정렬 & 체크박스 */}
-      <div className="flex flex-col items-center justify-center gap-2 mb-6 px-4 py-3 bg-pink-50 rounded-xl shadow-sm border border-pink-100">
+      <div
+        className="
+  max-w-2xl w-full mx-auto
+  flex flex-col items-center justify-center gap-2 mb-6
+  px-4 py-3 bg-white rounded-xl shadow-sm border border-pink-100
+"
+      >
         {/* ✅ 첫 줄: 검색 + 정렬 */}
         <div className="flex flex-col md:flex-row gap-3">
           <input
