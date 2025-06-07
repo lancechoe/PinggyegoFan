@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { guests } from "@/data/guests";
 import StickerCard from "@/components/StickerCard";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Image from "next/image";
+
 import Link from "next/link";
 
 export default function Home() {
@@ -81,8 +83,8 @@ export default function Home() {
             onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
             className="px-3 py-2 border border-gray-300 rounded-md"
           >
-            <option value="desc">출연 많은 순 🔽</option>
-            <option value="asc">출연 적은 순 🔼</option>
+            <option value="desc">출연 많은 순 </option>
+            <option value="asc">출연 적은 순 </option>
           </select>
         </div>
 
