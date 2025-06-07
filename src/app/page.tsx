@@ -3,9 +3,7 @@
 import { useState } from "react";
 import { guests } from "@/data/guests";
 import StickerCard from "@/components/StickerCard";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Image from "next/image";
-
 import Link from "next/link";
 
 export default function Home() {
