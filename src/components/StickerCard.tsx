@@ -37,6 +37,8 @@ export default function StickerCard({ guest }: Props) {
     const newLike = !isLiked;
     setIsLiked(newLike);
     localStorage.setItem(`like-${guest.name}`, String(newLike));
+
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
@@ -44,8 +46,8 @@ export default function StickerCard({ guest }: Props) {
       <DialogTrigger asChild>
         <Card
           className={`
-    w-40 h-55 ${getBgClass(guest.appearances)} rounded-full shadow-md
-    transform transition duration-300 ease-in-out
+    w-65 h-55 ${getBgClass(guest.appearances)} rounded-lg shadow-md
+    transform transition duration-a300 ease-in-out
     hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
     relative
   `}
@@ -56,9 +58,12 @@ export default function StickerCard({ guest }: Props) {
               alt={guest.name}
               width={100}
               height={100}
-              className="rounded-full mb-2 object-cover"
+              className={`rounded-full mb-2 object-cover border-4 ${
+                guest.appearances >= 5 ? "border-pink-200" : "border-pink-300"
+              }`}
               style={{ width: "100px", height: "100px" }}
             />
+
             <h2 className="font-bold text-lg">{guest.name}</h2>
             <p className="text-sm mt-1">🎬 {guest.appearances}회 출연</p>
             {hasCoupon && (

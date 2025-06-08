@@ -5,6 +5,7 @@ import { guests } from "@/data/guests";
 import StickerCard from "@/components/StickerCard";
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteCount from "@/components/FavoriteCount";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -24,6 +25,13 @@ export default function Home() {
         ? b.appearances - a.appearances
         : a.appearances - b.appearances
     );
+
+  const totalGuests = filteredGuests.length;
+  const paidCount = filteredGuests.filter((g) => g.appearances >= 3).length;
+  const totalAppearances = filteredGuests.reduce(
+    (acc, g) => acc + g.appearances,
+    0
+  );
 
   return (
     <main
@@ -108,8 +116,28 @@ export default function Home() {
         </label>
       </div>
 
+      {/* ✅ 통계 박스 */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3 text-center max-w-4xl mx-auto">
+        <div className="bg-pink-50 rounded-xl p-4 shadow-sm">
+          <div className="text-2xl">👥</div>
+          <div className="text-xl font-semibold">{totalGuests}</div>
+          <div className="text-sm text-gray-500">출연진</div>
+        </div>
+        <div className="bg-pink-50 rounded-xl p-4 shadow-sm">
+          <div className="text-2xl">💰</div>
+          <div className="text-xl font-semibold">{paidCount}</div>
+          <div className="text-sm text-gray-500">출연료 지급</div>
+        </div>
+        <div className="bg-pink-50 rounded-xl p-4 shadow-sm">
+          <div className="text-2xl">📺</div>
+          <div className="text-xl font-semibold">{totalAppearances}</div>
+          <div className="text-sm text-gray-500">총 출연 횟수</div>
+        </div>
+        <FavoriteCount guests={filteredGuests} />
+      </div>
+
       {/* 스티커 카드 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mt-10">
         {filteredGuests.map((guest) => (
           <StickerCard key={guest.name} guest={guest} />
         ))}
