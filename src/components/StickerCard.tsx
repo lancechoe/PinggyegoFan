@@ -49,7 +49,8 @@ export default function StickerCard({ guest }: Props) {
       <DialogTrigger asChild>
         <Card
           className={`
-            w-65 h-55 ${getBgClass(guest.appearances)} rounded-lg shadow-md
+            w-40 sm:w-45 h-35 md:w-55 h-45 lg:w-65 h-55 
+            ${getBgClass(guest.appearances)} rounded-lg shadow-md
             transform transition duration-300 ease-in-out
             hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
             relative

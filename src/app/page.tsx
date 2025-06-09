@@ -137,7 +137,14 @@ export default function Home() {
       </div>
 
       {/* 스티커 카드 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mt-10">
+      <div
+        className="
+  grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 
+  gap-6 mt-10 
+  w-full mx-auto max-w-8xl
+  place-items-center
+"
+      >
         {filteredGuests.map((guest) => (
           <StickerCard key={guest.name} guest={guest} />
         ))}
