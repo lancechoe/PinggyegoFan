@@ -15,32 +15,32 @@ export default function Home() {
   const [sortOrder, setSortOrder] = useState<"desc" | "asc" | "name">("desc");
   const [onlyPaid, setOnlyPaid] = useState(false);
   const [onlyFavorites, setOnlyFavorites] = useState(false);
-  const [todayCount, setTodayCount] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
+  // const [todayCount, setTodayCount] = useState(0);
+  // const [totalCount, setTotalCount] = useState(0);
 
-  useEffect(() => {
-    fetch("/api/track-visit");
+  // useEffect(() => {
+  //   fetch("/api/track-visit");
 
-    const fetchCounts = async () => {
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      );
+  //   const fetchCounts = async () => {
+  //     const supabase = createClient(
+  //       process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  //       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  //     );
 
-      const today = new Date().toISOString().split("T")[0];
-      const { data } = await supabase.from("visit_counts").select("*");
+  //     const today = new Date().toISOString().split("T")[0];
+  //     const { data } = await supabase.from("visit_counts").select("*");
 
-      if (data) {
-        const todayRow = data.find((d) => d.date === today);
-        setTodayCount(todayRow?.count ?? 0);
+  //     if (data) {
+  //       const todayRow = data.find((d) => d.date === today);
+  //       setTodayCount(todayRow?.count ?? 0);
 
-        const total = data.reduce((sum, row) => sum + row.count, 0);
-        setTotalCount(total);
-      }
-    };
+  //       const total = data.reduce((sum, row) => sum + row.count, 0);
+  //       setTotalCount(total);
+  //     }
+  //   };
 
-    fetchCounts();
-  }, []);
+  //   fetchCounts();
+  // }, []);
 
   const filteredGuests = guests
     .filter((g) => g.name.includes(search))
