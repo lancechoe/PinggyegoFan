@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎀 핑ㄱㅖ고 쿠폰북
 
-## Getting Started
+유튜브 예능 채널 **핑계고**의 팬사이트입니다!  
+출연 연예인의 출연 횟수를 뽀짝한 스티커 카드로 확인하고, 즐겨찾기로 나만의 즐겨찾는 출연진을 꾸며보세요 💖
 
-First, run the development server:
+> **https://pinggyegocoupon.com**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📸 미리보기
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![미리보기](public/스크린샷.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ 주요 기능
 
-To learn more about Next.js, take a look at the following resources:
+- 🧡 **출연진 스티커 카드**  
+  귀엽고 달걀형 카드에 출연 횟수, 출연 영상 정보 표시
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🌟 **쿠폰 도장 시스템**  
+  출연 횟수에 따라 별 도장 표시
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  - 3회 미만: ⭐ + ⬜
+  - 3~9회: ⭐ 개수만큼
+  - 10회 이상: `🌟 x N` 축약
 
-## Deploy on Vercel
+- 🔍 **검색 / 정렬 / 필터링**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  - 이름으로 검색
+  - 출연 많은 순 / 적은 순 정렬
+  - 출연료 지급자만 보기 💸
+  - 즐겨찾기만 보기 ❤️
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 💾 **로컬 스토리지 기반 즐겨찾기 시스템**  
+  하트를 눌러 즐겨찾기 등록하면, 전체 통계에서 반영됨
+
+- 📈 **방문자 수 통계 (Supabase 연동)**
+
+  - 오늘 방문자 수
+  - 총 방문자 수
+
+- 🤖 **유튜브 자동화 스크래핑 시스템**
+  - YouTube API를 통해 영상 description의 태그 또는 참여자 목록 파싱
+  - 출연자 이름, 출연 영상 링크 자동 수집
+  - 2회 이상 출연자만 데이터화
+
+---
+
+## 🛠️ 사용 기술
+
+- **Next.js** 14
+- **TypeScript**
+- **TailwindCSS** + ShadCN UI
+- **Supabase**
+- **YouTube Data API v3**
+- **Node.js + axios** (출연자 스크래퍼)
+
+---
+
+## 📁 프로젝트 구조
+
+pinggyego/
+├── public/
+│ ├── stickers/ # 출연자 이미지 폴더
+│ └── 핑계고로고.png # 상단 로고 이미지
+│
+├── src/
+│ ├── app/
+│ │ └── page.tsx # 메인 페이지 (홈)
+│ ├── components/
+│ │ ├── StickerCard.tsx # 출연자 스티커 카드 컴포넌트
+│ │ ├── CouponStamp.tsx # 출연 횟수에 따른 도장 표시
+│ │ └── FavoriteCount.tsx # 즐겨찾기 통계 UI
+│ ├── data/
+│ │ └── guests.ts # 출연자 정보 (스크래핑 결과 반영)
+│ ├── pages/
+│ │ └── about.tsx # 사이트 소개 페이지
+│ └── api/
+│ └── track-visit.ts # 방문자 수 트래킹 API (Supabase 연동)
+│
+├── pinggyegoScraper/ # 자동화 스크래핑 폴더 (루트 밖에 존재 가능)
+│ └── index.js # YouTube 영상에서 출연자 데이터 수집
+│
+├── .env.local # Supabase 등 API 키 저장
+├── tailwind.config.ts # TailwindCSS 설정
+├── tsconfig.json # TypeScript 설정
+└── README.md # 이 파일
+
+---
+
+## 👀 만든 사람
+
+🧑‍💻 Dev: @lancechoe
+🎨 Design & Planning: @lancechoe
