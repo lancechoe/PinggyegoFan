@@ -60,6 +60,7 @@
 
 ## 📁 프로젝트 구조
 
+```
 pinggyego/
 ├── public/
 │ ├── stickers/ # 출연자 이미지 폴더
@@ -83,6 +84,7 @@ pinggyego/
 ├── tailwind.config.ts # Tailwind 설정
 ├── tsconfig.json # TypeScript 설정
 └── README.md # 이 파일
+```
 
 ---
 
