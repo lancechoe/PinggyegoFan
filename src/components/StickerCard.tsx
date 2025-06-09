@@ -59,7 +59,7 @@ export default function StickerCard({ guest }: Props) {
         <div className="relative inline-block">
           {/* 👑 왕관 아이콘 */}
           {guest.name === "유재석" && (
-            <div className="absolute -top-8 left-1 text-3xl z-20">👑</div>
+            <div className="absolute -top-6 left-1 text-2xl z-20">👑</div>
           )}
 
           <Card
@@ -76,8 +76,8 @@ export default function StickerCard({ guest }: Props) {
               <Image
                 src={`${awardBadgeMap[guest.name]}.png`}
                 alt="수상 배지"
-                width={48}
-                height={48}
+                width={40}
+                height={40}
                 className="absolute top-2 left-2 z-20"
                 title={`${guest.name} 수상자`}
               />
