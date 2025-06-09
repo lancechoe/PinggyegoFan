@@ -1,7 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function FavoriteCount({ guests }: { guests: any[] }) {
+type Guest = {
+  name: string;
+  appearances: number;
+  image: string;
+  youtubeLinks: { title: string; url: string }[];
+};
+
+export default function FavoriteCount({ guests }: { guests: Guest[] }) {
   const [count, setCount] = useState(0);
 
   const updateCount = () => {
