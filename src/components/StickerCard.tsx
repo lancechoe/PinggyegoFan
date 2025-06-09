@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Guest } from "@/data/guests";
 import {
   Dialog,
   DialogTrigger,
@@ -13,7 +12,12 @@ import CouponStamp from "@/components/CouponStamp";
 import { useEffect, useState } from "react";
 
 type Props = {
-  guest: Guest;
+  guest: {
+    name: string;
+    appearances: number;
+    image: string;
+    youtubeLinks: { title: string; url: string }[];
+  };
 };
 
 function getBgClass(appearances: number): string {
@@ -37,7 +41,6 @@ export default function StickerCard({ guest }: Props) {
     const newLike = !isLiked;
     setIsLiked(newLike);
     localStorage.setItem(`like-${guest.name}`, String(newLike));
-
     window.dispatchEvent(new Event("storage"));
   };
 
@@ -46,11 +49,11 @@ export default function StickerCard({ guest }: Props) {
       <DialogTrigger asChild>
         <Card
           className={`
-    w-65 h-55 ${getBgClass(guest.appearances)} rounded-lg shadow-md
-    transform transition duration-a300 ease-in-out
-    hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
-    relative
-  `}
+            w-65 h-55 ${getBgClass(guest.appearances)} rounded-lg shadow-md
+            transform transition duration-300 ease-in-out
+            hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
+            relative
+          `}
         >
           <CardContent className="p-4 flex flex-col items-center">
             <Image
@@ -73,7 +76,7 @@ export default function StickerCard({ guest }: Props) {
             )}
             <button
               onClick={(e) => {
-                e.stopPropagation(); // 모달 안 열리게 방지
+                e.stopPropagation();
                 toggleLike();
               }}
               className="absolute top-2 right-2 text-xl"
@@ -92,17 +95,19 @@ export default function StickerCard({ guest }: Props) {
         <CouponStamp count={guest.appearances} />
 
         <ul className="mt-2 list-disc pl-5 space-y-1 text-sm">
-          {guest.youtubeLinks.map((link, idx) => (
-            <li key={idx}>
-              <a
-                href={link}
-                target="_blank"
-                className="text-blue-500 hover:underline"
-              >
-                🎥 영상 {idx + 1}
-              </a>
-            </li>
-          ))}
+          {guest.youtubeLinks.map(
+            (link: { title: string; url: string }, idx: number) => (
+              <li key={idx}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  className="text-blue-500 hover:underline"
+                >
+                  🎥 {link.title}
+                </a>
+              </li>
+            )
+          )}
         </ul>
       </DialogContent>
     </Dialog>
