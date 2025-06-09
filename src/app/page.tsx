@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import { guests } from "@/data/guests";
-import { createClient } from "@supabase/supabase-js";
+//import { createClient } from "@supabase/supabase-js";
 
 import StickerCard from "@/components/StickerCard";
 import Image from "next/image";
