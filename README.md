@@ -64,7 +64,6 @@ pinggyego/
 ├── public/
 │ ├── stickers/ # 출연자 이미지 폴더
 │ └── 핑계고로고.png # 상단 로고 이미지
-│
 ├── src/
 │ ├── app/
 │ │ └── page.tsx # 메인 페이지 (홈)
@@ -73,17 +72,15 @@ pinggyego/
 │ │ ├── CouponStamp.tsx # 출연 횟수에 따른 도장 표시
 │ │ └── FavoriteCount.tsx # 즐겨찾기 통계 UI
 │ ├── data/
-│ │ └── guests.ts # 출연자 정보 (스크래핑 결과 반영)
+│ │ └── guests.ts # 출연자 정보 (스크래핑 결과)
 │ ├── pages/
-│ │ └── about.tsx # 사이트 소개 페이지
+│ │ └── about.tsx # 소개 페이지
 │ └── api/
-│ └── track-visit.ts # 방문자 수 트래킹 API (Supabase 연동)
-│
-├── pinggyegoScraper/ # 자동화 스크래핑 폴더 (루트 밖에 존재 가능)
-│ └── index.js # YouTube 영상에서 출연자 데이터 수집
-│
-├── .env.local # Supabase 등 API 키 저장
-├── tailwind.config.ts # TailwindCSS 설정
+│ └── track-visit.ts # 방문자 수 API (Supabase)
+├── pinggyegoScraper/ # 유튜브 출연자 데이터 수집기
+│ └── index.js # 자동화 스크래퍼 실행 파일
+├── .env.local # Supabase 등 API 키
+├── tailwind.config.ts # Tailwind 설정
 ├── tsconfig.json # TypeScript 설정
 └── README.md # 이 파일
 
