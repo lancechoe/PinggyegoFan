@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Guest } from "@/data/guests";
 
-export default function FavoriteCount({ guests }: { guests: Guest[] }) {
+export default function FavoriteCount({ guests }: { guests: any[] }) {
   const [count, setCount] = useState(0);
 
   const updateCount = () => {
@@ -13,9 +12,8 @@ export default function FavoriteCount({ guests }: { guests: Guest[] }) {
   };
 
   useEffect(() => {
-    updateCount(); // 초기값 설정
+    updateCount();
 
-    // 스토리지 이벤트 리스너 (다른 컴포넌트에서 변경되면 반응)
     const onStorage = () => updateCount();
     window.addEventListener("storage", onStorage);
 
