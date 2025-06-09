@@ -72,9 +72,9 @@ export default function Home() {
   bg-gradient-to-b from-white to-pink-100
 "
     >
-      <div className="absolute top-3 left-3 text-[10px] text-gray-500">
+      {/* <div className="absolute top-3 left-3 text-[10px] text-gray-500">
         today&apos;s visit : {todayCount} | total visit : {totalCount}
-      </div>
+      </div> */}
       <h1 className="text-3xl font-bold mb-6 text-center">
         <Link
           href="/about"
