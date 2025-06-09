@@ -73,7 +73,7 @@ export default function Home() {
 "
     >
       <div className="absolute top-3 left-3 text-[10px] text-gray-500">
-        today's visit : {todayCount} / total visit : {totalCount}
+        today&apos;s visit : {todayCount} / total visit : {totalCount}
       </div>
       <h1 className="text-3xl font-bold mb-6 text-center">
         <Link
