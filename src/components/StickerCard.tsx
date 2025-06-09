@@ -56,6 +56,10 @@ export default function StickerCard({ guest }: Props) {
             relative
           `}
         >
+          {/* 👑 왕관 아이콘 */}
+          {guest.name === "유재석" && (
+            <div className="absolute -top-8 left-1 text-3xl">👑</div>
+          )}
           <CardContent className="p-4 flex flex-col items-center">
             <Image
               src={guest.image}
@@ -88,16 +92,17 @@ export default function StickerCard({ guest }: Props) {
         </Card>
       </DialogTrigger>
 
-      <DialogContent>
+      <DialogContent className="max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{guest.name}님의 출연 정보</DialogTitle>
         </DialogHeader>
-        <p className="text-sm">총 {guest.appearances}회 출연</p>
-        <CouponStamp count={guest.appearances} />
 
-        <ul className="mt-2 list-disc pl-5 space-y-1 text-sm">
-          {guest.youtubeLinks.map(
-            (link: { title: string; url: string }, idx: number) => (
+        <div className="space-y-2">
+          <p className="text-sm">총 {guest.appearances}회 출연</p>
+          <CouponStamp count={guest.appearances} />
+
+          <ul className="mt-2 list-disc pl-5 space-y-1 text-sm">
+            {guest.youtubeLinks.map((link, idx) => (
               <li key={idx}>
                 <a
                   href={link.url}
@@ -107,9 +112,9 @@ export default function StickerCard({ guest }: Props) {
                   🎥 {link.title}
                 </a>
               </li>
-            )
-          )}
-        </ul>
+            ))}
+          </ul>
+        </div>
       </DialogContent>
     </Dialog>
   );

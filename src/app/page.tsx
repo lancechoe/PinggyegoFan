@@ -9,7 +9,7 @@ import FavoriteCount from "@/components/FavoriteCount";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [sortOrder, setSortOrder] = useState<"desc" | "asc">("desc");
+  const [sortOrder, setSortOrder] = useState<"desc" | "asc" | "name">("desc");
   const [onlyPaid, setOnlyPaid] = useState(false);
   const [onlyFavorites, setOnlyFavorites] = useState(false);
 
@@ -20,11 +20,14 @@ export default function Home() {
       if (!onlyFavorites) return true;
       return localStorage.getItem(`like-${g.name}`) === "true";
     })
-    .sort((a, b) =>
-      sortOrder === "desc"
+    .sort((a, b) => {
+      if (sortOrder === "name") {
+        return a.name.localeCompare(b.name, "ko");
+      }
+      return sortOrder === "desc"
         ? b.appearances - a.appearances
-        : a.appearances - b.appearances
-    );
+        : a.appearances - b.appearances;
+    });
 
   const totalGuests = filteredGuests.length;
   const paidCount = filteredGuests.filter((g) => g.appearances >= 3).length;
@@ -86,11 +89,14 @@ export default function Home() {
           />
           <select
             value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
+            onChange={(e) =>
+              setSortOrder(e.target.value as "asc" | "desc" | "name")
+            }
             className="px-3 py-2 border border-gray-300 rounded-md"
           >
-            <option value="desc">출연 많은 순 </option>
-            <option value="asc">출연 적은 순 </option>
+            <option value="desc">출연 많은 순</option>
+            <option value="asc">출연 적은 순</option>
+            <option value="name">이름순</option>
           </select>
         </div>
 

@@ -11,13 +11,22 @@ export default function AboutPage() {
       </p>
 
       <p className="text-gray-500 text-sm">
-        출연 횟수 기반의 뽀짝한 스티커판과 도장 시스템이 포함되어 있어요!
+        출연 횟수 기반의 뽀짝한 쿠폰북과 도장 시스템이 포함되어 있어요!
+      </p>
+
+      <p className="text-gray-500 text-sm">
+        현재는 2회 이상 출연하신 분들만 쿠폰북 만들고 있습니다!
       </p>
 
       {/* 🐣 제작자 정보 */}
-      <p className="text-sm text-gray-500 mt-8">
-        본 사이트는 개인 포트폴리오 용도로 제작되었으며, 핑계고 유튜브 채널 또는
-        해당 출연자들과는 무관합니다. 문의:{" "}
+      <p className="text-sm text-gray-500 mt-8 ">
+        본 사이트는 개인 포트폴리오 용도로 제작되었으며,
+      </p>
+      <p className="text-sm text-gray-500 mt-0">
+        핑계고 유튜브 채널 또는 해당 출연자들과는 무관합니다.
+      </p>
+      <p className="text-sm text-gray-500 mt-0">
+        문의:{" "}
         <a href="mailto:musd128@naver.com" className="underline">
           musd128@naver.com
         </a>
