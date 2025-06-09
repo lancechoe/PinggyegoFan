@@ -20,6 +20,15 @@ type Props = {
   };
 };
 
+// 🏆 수상자 목록 + 이미지 경로 매핑
+const awardBadgeMap: Record<string, string> = {
+  이동욱: "/1주년대상",
+  황정민: "/2주년대상",
+  지석진: "/1주년최우수상",
+  조세호: "/1주년최우수상",
+  이동휘: "/2주년최우수상",
+};
+
 function getBgClass(appearances: number): string {
   if (appearances >= 50) return "bg-pink-500"; // 유재석
   if (appearances >= 10) return "bg-pink-400";
@@ -47,49 +56,63 @@ export default function StickerCard({ guest }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card
-          className={`
-            w-40 sm:w-45 h-35 md:w-55 h-45 lg:w-65 h-55 
-            ${getBgClass(guest.appearances)} rounded-lg shadow-md
-            transform transition duration-300 ease-in-out
-            hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
-            relative
-          `}
-        >
+        <div className="relative inline-block">
           {/* 👑 왕관 아이콘 */}
           {guest.name === "유재석" && (
-            <div className="absolute -top-8 left-1 text-3xl">👑</div>
+            <div className="absolute -top-8 left-1 text-3xl z-20">👑</div>
           )}
-          <CardContent className="p-4 flex flex-col items-center">
-            <Image
-              src={guest.image}
-              alt={guest.name}
-              width={100}
-              height={100}
-              className={`rounded-full mb-2 object-cover border-4 ${
-                guest.appearances >= 5 ? "border-pink-200" : "border-pink-300"
-              }`}
-              style={{ width: "100px", height: "100px" }}
-            />
 
-            <h2 className="font-bold text-lg">{guest.name}</h2>
-            <p className="text-sm mt-1">🎬 {guest.appearances}회 출연</p>
-            {hasCoupon && (
-              <Badge className="mt-2 bg-pink-200 text-pink-900">
-                💸 출연료 지급!
-              </Badge>
+          <Card
+            className={`
+              w-40 sm:w-45 h-35 md:w-55 h-45 lg:w-65 h-55 
+              ${getBgClass(guest.appearances)} rounded-lg shadow-md
+              transform transition duration-300 ease-in-out
+              hover:scale-105 hover:rotate-1 hover:ring-4 ring-pink-200
+              relative
+            `}
+          >
+            {/* 🏆 수상 배지 이미지 */}
+            {awardBadgeMap[guest.name] && (
+              <Image
+                src={`${awardBadgeMap[guest.name]}.png`}
+                alt="수상 배지"
+                width={48}
+                height={48}
+                className="absolute top-2 left-2 z-20"
+                title={`${guest.name} 수상자`}
+              />
             )}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleLike();
-              }}
-              className="absolute top-2 right-2 text-xl"
-            >
-              {isLiked ? "❤️" : "🤍"}
-            </button>
-          </CardContent>
-        </Card>
+            <CardContent className="p-4 flex flex-col items-center">
+              <Image
+                src={guest.image}
+                alt={guest.name}
+                width={100}
+                height={100}
+                className={`rounded-full mb-2 object-cover border-4 ${
+                  guest.appearances >= 5 ? "border-pink-200" : "border-pink-300"
+                }`}
+                style={{ width: "100px", height: "100px" }}
+              />
+
+              <h2 className="font-bold text-lg">{guest.name}</h2>
+              <p className="text-sm mt-1">🎬 {guest.appearances}회 출연</p>
+              {hasCoupon && (
+                <Badge className="mt-2 bg-pink-200 text-pink-900">
+                  💸 출연료 지급!
+                </Badge>
+              )}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleLike();
+                }}
+                className="absolute top-2 right-2 text-xl"
+              >
+                {isLiked ? "❤️" : "🤍"}
+              </button>
+            </CardContent>
+          </Card>
+        </div>
       </DialogTrigger>
 
       <DialogContent className="max-h-[90vh] overflow-y-auto">
