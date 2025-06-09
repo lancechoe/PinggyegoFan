@@ -3,6 +3,10 @@
 유튜브 예능 채널 **핑계고**의 팬사이트입니다!  
 출연 연예인의 출연 횟수를 뽀짝한 스티커 카드로 확인하고, 즐겨찾기로 나만의 즐겨찾는 출연진을 꾸며보세요 💖
 
+This is a fan-made website for the YouTube channel "Pinggyego"!
+Check out how many times each guest has appeared with adorable sticker cards,
+and mark your favorite guests with a heart 💖 to create your own custom lineup!
+
 > **https://pinggyegocoupon.com**
 
 ---
